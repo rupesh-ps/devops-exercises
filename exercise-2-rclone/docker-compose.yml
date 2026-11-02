@@ -1,0 +1,21 @@
+name: rupesh-rclone-ex2
+services:
+  store-a:
+    image: quay.io/minio/minio@sha256:8494c615f45cd6726f048dce162da5826582c2ce67d420428200d9d3cccf6e25
+    command: server /data --console-address :9001
+    ports: ["127.0.0.1:19000:9000", "127.0.0.1:19001:9001"]
+    environment:
+      MINIO_ROOT_USER: ${MINIO_A_USER:?Generate .env as shown in README.md}
+      MINIO_ROOT_PASSWORD: ${MINIO_A_PASSWORD:?Generate .env as shown in README.md}
+    volumes: [store-a:/data]
+  store-b:
+    image: quay.io/minio/minio@sha256:8494c615f45cd6726f048dce162da5826582c2ce67d420428200d9d3cccf6e25
+    command: server /data --console-address :9001
+    ports: ["127.0.0.1:19002:9000", "127.0.0.1:19003:9001"]
+    environment:
+      MINIO_ROOT_USER: ${MINIO_B_USER:?Generate .env as shown in README.md}
+      MINIO_ROOT_PASSWORD: ${MINIO_B_PASSWORD:?Generate .env as shown in README.md}
+    volumes: [store-b:/data]
+volumes:
+  store-a:
+  store-b:
