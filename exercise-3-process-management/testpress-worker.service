@@ -1,0 +1,34 @@
+[Unit]
+Description=Testpress heartbeat worker
+StartLimitIntervalSec=30
+StartLimitBurst=3
+
+[Service]
+Type=exec
+User=testpress-worker
+Group=testpress-worker
+WorkingDirectory=/opt/testpress-worker
+EnvironmentFile=/etc/testpress-worker.env
+ExecStart=/usr/bin/python3 -u /opt/testpress-worker/app.py
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=15
+KillSignal=SIGTERM
+KillMode=control-group
+OOMPolicy=stop
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=testpress-worker
+CPUAccounting=yes
+CPUQuota=25%
+MemoryAccounting=yes
+MemoryHigh=48M
+MemoryMax=64M
+MemorySwapMax=0
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target
