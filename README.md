@@ -1,6 +1,6 @@
 # DevOps exercises
 
-Two hands-on exercises covering server provisioning with cloud-init and file transfers with Rclone. Both run locally, using Ubuntu VMs and MinIO instead of paid cloud services.
+Hands-on exercises covering server provisioning, file transfers, and Linux process management. They use local Ubuntu VMs and MinIO for practice.
 
 ## 1. Cloud-init
 
@@ -18,8 +18,18 @@ Practise local and S3 transfers using two MinIO stores, without a saved Rclone c
 - [Results and learnings](exercise-2-rclone/results.md)
 - [Transfer script](exercise-2-rclone/transfer.sh)
 
+## 3. Linux processes and systemd (Week 2)
+
+Run a Python heartbeat worker from the shell, then manage it with systemd under a dedicated user. Work through signals, crashes, logs, resource limits and startup after reboot. The experiment notes include the results from testpress-vm and links to the screenshots.
+
+- [Setup and explanation](exercise-3-process-management/README.md)
+- [Worker application](exercise-3-process-management/app.py)
+- [systemd unit](exercise-3-process-management/testpress-worker.service)
+- [Experiments and observations](exercise-3-process-management/experiments.md)
+- [Screenshots](exercise-3-process-management/evidence/README.md)
+
 ## Before starting
 
-Cloud-init needs Multipass and internet access. Rclone needs Bash, Python 3, curl, rclone and Docker with Compose. Each exercise's README has its setup steps.
+Cloud-init needs Multipass and internet access. Rclone needs Bash, Python 3, curl, rclone and Docker with Compose. Week 2 needs a Linux environment with systemd, Python 3 and cgroup v2. Each exercise's README has its setup steps.
 
 Keep the MinIO `.env` file private. Generate credentials locally using the setup instructions.
